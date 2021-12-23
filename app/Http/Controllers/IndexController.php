@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class NilaiController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,36 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        return view('dashboard.nilai-table', [
-            "title" => "Nilai"
+        return view('login', [
+            'title' => 'Login'
         ]);
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request -> validate([
+            'email'         => 'required|email:dns',
+            'password'      => 'required',
+        ]);
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+
+            return redirect()->intended('/dashboard-index');
+        };
+        
+        return back()->with('loginError', 'Login Gagal!');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     /**
@@ -43,10 +70,10 @@ class NilaiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Nilai  $nilai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Nilai $nilai)
+    public function show($id)
     {
         //
     }
@@ -54,10 +81,10 @@ class NilaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Nilai  $nilai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nilai $nilai)
+    public function edit($id)
     {
         //
     }
@@ -66,10 +93,10 @@ class NilaiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Nilai  $nilai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nilai $nilai)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,10 +104,10 @@ class NilaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Nilai  $nilai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nilai $nilai)
+    public function destroy($id)
     {
         //
     }

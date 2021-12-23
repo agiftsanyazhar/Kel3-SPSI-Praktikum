@@ -15,6 +15,11 @@ class CreateBimbingansTable extends Migration
     {
         Schema::create('bimbingans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_mahasiswa')->constrained('mahasiswas');
+            $table->date('tgl_konsultasi')->default(date("Y-m-d"));
+            $table->text('materi_konsultasi');
+            $table->string('status_bimbingan',30);
+            $table->string('bukti_bimbingan');
             $table->timestamps();
         });
     }

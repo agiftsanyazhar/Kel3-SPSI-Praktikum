@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailPendaftaranSidangsTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateDetailPendaftaranSidangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail__pendaftaran__sidangs', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
+            $table->string('jenis_role',50);
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateDetailPendaftaranSidangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail__pendaftaran__sidangs');
+        Schema::dropIfExists('roles');
     }
 }

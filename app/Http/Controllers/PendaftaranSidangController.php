@@ -14,7 +14,9 @@ class PendaftaranSidangController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.register-sidang', [
+            "title" => "Daftar Sidang"
+        ]);
     }
 
     /**

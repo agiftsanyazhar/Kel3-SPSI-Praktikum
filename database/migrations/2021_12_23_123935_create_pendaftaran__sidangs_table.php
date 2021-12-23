@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreatePendaftaranSidangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pendaftaran__sidangs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_paa')->nullable();
             $table->foreignId('id_dosen')->nullable();
             $table->foreignId('id_mahasiswa')->nullable();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('role');
-            $table->rememberToken();
+            $table->timestamp('tgl_daftar_sidang')->default(date("Y-m-d"));
+            $table->string('dosen_pembimbing',50);
+            $table->boolean('aktif')->default(1);
+            $table->string('proposal');
+            $table->string('khs');
+            $table->string('toefl');
+
             $table->timestamps();
         });
     }
@@ -35,6 +36,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pendaftaran__sidangs');
     }
 }

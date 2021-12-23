@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Dashboard_IndexController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MapsController;
+use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\PendaftaranSidangController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +20,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+//================================================================================
+//===================================== Index =====================================
+//================================================================================
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
+
+//================================================================================
+//================================== Dashboard ===================================
+//================================================================================
+Route::get('/dashboard-index', [Dashboard_IndexController::class, 'index']);
+Route::get('/maps', [MapsController::class, 'index']);
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/nilai-table', [NilaiController::class, 'index']);
+Route::get('/daftar-sidang', [PendaftaranSidangController::class, 'index']);
+
+//================================================================================
+//=================================== Register ===================================
+//================================================================================
+Route::post('/register', [RegisterController::class, 'store']);
+// Route::delete('/delete-santri-{id}', [RegisterController::class, 'destroy']);
+
+//================================================================================
+//===================================== Login & Logout ===========================
+//================================================================================
+Route::post('/login', [IndexController::class, 'authenticate']);
+Route::post('/logout', [IndexController::class, 'logout']);

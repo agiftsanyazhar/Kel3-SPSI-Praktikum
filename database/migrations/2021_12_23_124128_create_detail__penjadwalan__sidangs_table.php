@@ -15,6 +15,11 @@ class CreateDetailPenjadwalanSidangsTable extends Migration
     {
         Schema::create('detail__penjadwalan__sidangs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_sidang')->constrained('penjadwalan__sidangs');
+            $table->foreignId('id_daftar_sidang')->constrained('pendaftaran__sidangs');
+            $table->date('tgl_sidang')->default(date("Y-m-d"));
+            $table->string('ruang_sidang',50);
+            $table->time('jam_sidang');
             $table->timestamps();
         });
     }

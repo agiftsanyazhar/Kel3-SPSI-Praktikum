@@ -15,6 +15,11 @@ class CreatePAASTable extends Migration
     {
         Schema::create('p_a_a_s', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_paa',50);
+            $table->string('alamat_paa',100);
+            $table->string('hp',15);
+            $table->string('email',50);
+            $table->string('password');
             $table->timestamps();
         });
     }
