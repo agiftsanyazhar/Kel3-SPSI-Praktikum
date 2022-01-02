@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Detail_Penjadwalan_Sidang;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DetailPenjadwalanSidangFactory extends Factory
+class Detail_Penjadwalan_SidangFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -22,7 +22,11 @@ class DetailPenjadwalanSidangFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_sidang'         => mt_rand(1,10),
+            'id_daftar_sidang'  => mt_rand(1,10),
+            'tgl_sidang'        => $this->faker->date(now()),
+            'ruang_sidang'      => $this->faker->sentence(1),
+            'jam_sidang'        => $this->faker->time(now()),
         ];
     }
 }

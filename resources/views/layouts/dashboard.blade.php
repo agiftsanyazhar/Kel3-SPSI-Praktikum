@@ -67,8 +67,22 @@
                 <span class="nav-link-text">Nilai</span>
               </a>
             </li>
+            @can('paa')
+              <li class="nav-item">
+                <a class="nav-link" href="/dosen-table">
+                  <i class="ni ni-bullet-list-67 text-default"></i>
+                  <span class="nav-link-text">Dosen</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/form-create-dosen">
+                  <i class="ni ni-circle-08 text-pink"></i>
+                  <span class="nav-link-text">Daftar Dosen</span>
+                </a>
+              </li>
+            @endcan
             <li class="nav-item">
-              <a class="nav-link" href="/daftar-sidang">
+              <a class="nav-link" href="/form-create-sidang">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text">Daftar Sidang</span>
               </a>
@@ -124,23 +138,22 @@
                     <img alt="Image placeholder" src="assets/img/theme/team-4.jpg">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->nama }}</span>
                   </div>
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
                 <div class="dropdown-header noti-title">
-                  <h6 class="text-overflow m-0">Welcome!</h6>
+                  <h6 class="text-overflow m-0">Welcome - {{ auth()->user()->role }}</h6>
                 </div>
                 <a href="profile" class="dropdown-item">
-                  <i class="ni ni-single-02"></i>
                   <span>Profile</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
-                  <i class="ni ni-user-run"></i>
-                  <span>Logout</span>
-                </a>
+                <form action="/logout" method="POST">
+                  @csrf
+                    <button class="dropdown-item" type="submit">Logout</button>
+                </form>
               </div>
             </li>
           </ul>

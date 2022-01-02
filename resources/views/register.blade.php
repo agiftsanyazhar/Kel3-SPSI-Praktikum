@@ -16,12 +16,12 @@
               <form role="form" action="/register" method="POST">
                 @csrf
                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
                     <input class="form-control" placeholder="Nama" type="text" name="nama_mahasiswa">
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
                     <input class="form-control" placeholder="Alamat" type="text" name="alamat_mahasiswa">
                   </div>
                 </div>
@@ -31,7 +31,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
                     <input class="form-control" placeholder="Email" type="email" name="email">
                   </div>
                 </div>
@@ -41,12 +41,12 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
                     <input class="form-control" placeholder="Prodi" type="text" name="prodi">
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary mt-4">Create account</button>
+                  <button type="submit" class="btn btn-primary mt-4">Register</button>
                 </div>
               </form>
             </div>

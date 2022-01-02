@@ -15,16 +15,13 @@ class CreatePendaftaranSidangsTable extends Migration
     {
         Schema::create('pendaftaran__sidangs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_paa')->nullable();
-            $table->foreignId('id_dosen')->nullable();
-            $table->foreignId('id_mahasiswa')->nullable();
-            $table->timestamp('tgl_daftar_sidang')->default(date("Y-m-d"));
-            $table->string('dosen_pembimbing',50);
+            $table->foreignId('nid')->constrained('dosens');
+            $table->foreignId('nim')->constrained('mahasiswas');
+            $table->date('tgl_daftar_sidang')->default(date("Y-m-d"));
             $table->boolean('aktif')->default(1);
             $table->string('proposal');
             $table->string('khs');
             $table->string('toefl');
-
             $table->timestamps();
         });
     }

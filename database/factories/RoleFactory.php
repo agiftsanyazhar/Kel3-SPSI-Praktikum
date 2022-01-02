@@ -22,7 +22,9 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'jenis_role'        => $this->faker->unique()->word(),
+            'created_at'        => $this->faker->date(now()),
+            'updated_at'        => $this->faker->date(now()),
         ];
     }
 }

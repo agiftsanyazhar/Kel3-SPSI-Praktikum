@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dosen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DosenController extends Controller
 {
@@ -14,7 +15,9 @@ class DosenController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.dosen-table', [
+            "title" => "Dosen"
+        ]);
     }
 
     /**
@@ -24,7 +27,9 @@ class DosenController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.create.dosen', [
+            "title" => "Daftar Dosen"
+        ]);
     }
 
     /**
@@ -36,6 +41,35 @@ class DosenController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function register(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nama_dosen'        => 'required|min:3|max:50',
+            'alamat_dosen'      => 'required|max:100',
+            'hp'                => 'required|unique:dosens|unique:mahasiswas|unique:paas',
+            'email'             => 'required|email:dns|unique:dosens|unique:mahasiswas|unique:paas',
+            'password'          => 'required||min:8|max:32',
+        ]);
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        Dosen::create($validatedData);
+        
+        $dosenid = Dosen::latest()->first()->id;
+
+        DB::table('users')->insert([
+            'nid'           => $dosenid,
+            'nama'          => $validatedData['nama_dosen'],
+            'email'         => $validatedData['email'],
+            'password'      => $validatedData['password'],
+            'role'          => 'Dosen',
+        ]);
+
+        $request->session()->flash('success','Registrasi Berhasil! Silakan Login');
+
+        return redirect('/');
     }
 
     /**

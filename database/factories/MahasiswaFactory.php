@@ -22,7 +22,14 @@ class MahasiswaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nama_mahasiswa'    => $this->faker->name(),
+            'alamat_mahasiswa'  => $this->faker->address(),
+            'hp'                => '+628'.mt_rand(1111111111,9999999999),
+            'email'             => $this->faker->unique()->safeEmail(),
+            'password'          => $this->faker->password(8,32),
+            'prodi'             => 'Sistem Informasi',
+            'created_at'        => $this->faker->date(now()),
+            'updated_at'        => $this->faker->date(now()),
         ];
     }
 }

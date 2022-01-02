@@ -41,8 +41,8 @@ class RegisterController extends Controller
         $validatedData = $request->validate([
             'nama_mahasiswa'    => 'required|min:3|max:50',
             'alamat_mahasiswa'  => 'required|max:100',
-            'hp'                => 'required|unique:dosens|unique:mahasiswas|unique:p_a_a_s',
-            'email'             => 'required|email:dns|unique:dosens|unique:mahasiswas|unique:p_a_a_s',
+            'hp'                => 'required|unique:dosens|unique:mahasiswas|unique:paas',
+            'email'             => 'required|email:dns|unique:dosens|unique:mahasiswas|unique:paas',
             'password'          => 'required||min:8|max:32',
             'prodi'             => 'required|max:30',
         ]);
@@ -54,7 +54,7 @@ class RegisterController extends Controller
         $mahasiswaid = Mahasiswa::latest()->first()->id;
 
         DB::table('users')->insert([
-            'id_mahasiswa'  => $mahasiswaid,
+            'nim'           => $mahasiswaid,
             'nama'          => $validatedData['nama_mahasiswa'],
             'email'         => $validatedData['email'],
             'password'      => $validatedData['password'],

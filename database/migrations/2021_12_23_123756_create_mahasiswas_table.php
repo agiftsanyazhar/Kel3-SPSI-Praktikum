@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateMahasiswasTable extends Migration
@@ -15,6 +16,7 @@ class CreateMahasiswasTable extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
+            // $table->id()->unsigned();
             $table->string('nama_mahasiswa',50);
             $table->string('alamat_mahasiswa',100);
             $table->string('hp',15);
@@ -23,6 +25,8 @@ class CreateMahasiswasTable extends Migration
             $table->string('prodi',30);
             $table->timestamps();
         });
+
+        // DB::update("ALTER TABLE mahasiswas AUTO_INCREMENT = 152011513001;");
     }
 
     /**

@@ -14,9 +14,7 @@ class PendaftaranSidangController extends Controller
      */
     public function index()
     {
-        return view('dashboard.register-sidang', [
-            "title" => "Daftar Sidang"
-        ]);
+        
     }
 
     /**
@@ -26,7 +24,9 @@ class PendaftaranSidangController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.create.sidang', [
+            "title" => "Daftar Sidang"
+        ]);
     }
 
     /**
