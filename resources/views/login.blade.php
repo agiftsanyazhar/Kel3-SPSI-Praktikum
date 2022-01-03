@@ -7,6 +7,16 @@
   <div class="container mt--8 pb-5">
     <div class="row justify-content-center">
       <div class="col-lg-5 col-md-7">
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
+        @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+        </div>
+        @endif
         <div class="card bg-secondary border-0 mb-0">
           <div class="card-body px-lg-5 py-lg-5">
             <div class="text-center text-muted mb-4">
@@ -16,7 +26,12 @@
               @csrf
               <div class="form-group mb-3">
                 <div class="input-group input-group-merge input-group-alternative">
-                  <input class="form-control" placeholder="Email" type="email" name="email">
+                  <input class="form-control @error('email') is-invalid @enderror" placeholder="NIP/NID/NIM" type="email" name="email" value="{{ old('email') }}" required>
+                  @error('email')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
                 </div>
               </div>
               <div class="form-group">

@@ -15,7 +15,9 @@ class NilaiController extends Controller
     public function index()
     {
         return view('dashboard.nilai-table', [
-            "title" => "Nilai"
+            'nilais'    => Nilai::all(),
+            "title"     => "Nilai",
+            'counter'   => 1,
         ]);
     }
 

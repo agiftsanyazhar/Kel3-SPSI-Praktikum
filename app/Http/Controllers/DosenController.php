@@ -16,7 +16,9 @@ class DosenController extends Controller
     public function index()
     {
         return view('dashboard.dosen-table', [
-            "title" => "Dosen"
+            'dosens'    => Dosen::all(),
+            "title"     => "Dosen",
+            'counter'   => 1,
         ]);
     }
 
@@ -40,11 +42,6 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    public function register(Request $request)
-    {
         $validatedData = $request->validate([
             'nama_dosen'        => 'required|min:3|max:50',
             'alamat_dosen'      => 'required|max:100',
@@ -67,9 +64,9 @@ class DosenController extends Controller
             'role'          => 'Dosen',
         ]);
 
-        $request->session()->flash('success','Registrasi Berhasil! Silakan Login');
+        $request->session()->flash('success','Dosen Berhasil Ditambahkan!');
 
-        return redirect('/');
+        return redirect('/dosen-table');
     }
 
     /**

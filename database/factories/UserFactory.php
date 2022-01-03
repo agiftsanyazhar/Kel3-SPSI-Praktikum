@@ -23,7 +23,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'nama'              => 'Zulfa Lutfiah',
+            'nama'              => 'PAA',
+            'nip'               => '1',
             'email'             => 'paa@gmail.com',
             'password'          => bcrypt('password'), // password
             'role'              => 'PAA',

@@ -61,13 +61,15 @@
                 <span class="nav-link-text">Location</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/nilai-table">
-                <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">Nilai</span>
-              </a>
-            </li>
-            @can('paa')
+            {{-- @can('dosen') --}}
+              <li class="nav-item">
+                <a class="nav-link" href="/nilai-table">
+                  <i class="ni ni-bullet-list-67 text-default"></i>
+                  <span class="nav-link-text">Nilai</span>
+                </a>
+              </li>
+            {{-- @endcan --}}
+            {{-- @can('paa') --}}
               <li class="nav-item">
                 <a class="nav-link" href="/dosen-table">
                   <i class="ni ni-bullet-list-67 text-default"></i>
@@ -75,12 +77,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/form-create-dosen">
-                  <i class="ni ni-circle-08 text-pink"></i>
-                  <span class="nav-link-text">Daftar Dosen</span>
+                <a class="nav-link" href="/sidang-table">
+                  <i class="ni ni-bullet-list-67 text-default"></i>
+                  <span class="nav-link-text">Sidang</span>
                 </a>
               </li>
-            @endcan
+            {{-- @endcan --}}
             <li class="nav-item">
               <a class="nav-link" href="/form-create-sidang">
                 <i class="ni ni-circle-08 text-pink"></i>

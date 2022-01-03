@@ -15,9 +15,16 @@
 @section('container2')
   <div class="row">
     <div class="col">
-      <div class="mb-3">
-        <a href="#!" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
-      </div>
+      {{-- @can('dosen') --}}
+        <div class="mb-3">
+          <a href="#!" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
+        </div>
+      {{-- @endcan --}}
+      @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+        </div>
+      @endif
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
@@ -28,63 +35,24 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col" class="sort" data-sort="name">Project</th>
-                <th scope="col" class="sort" data-sort="budget">Budget</th>
-                <th scope="col" class="sort" data-sort="status">Status</th>
-                <th scope="col" class="sort" data-sort="completion">Completion</th>
+                <th scope="col" class="sort" data-sort="name">No.</th>
+                <th scope="col" class="sort" data-sort="budget">Nilai Prsentasi</th>
+                <th scope="col" class="sort" data-sort="status">Nilai Buku Proposal</th>
+                <th scope="col" class="sort" data-sort="completion">Nilai Ide Inovasi Proposal</th>
+                <th scope="col" class="sort" data-sort="completion">Total</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody class="list">
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <a href="#" class="avatar rounded-circle mr-3">
-                      <img alt="Image placeholder" src="assets/img/theme/bootstrap.jpg">
-                    </a>
-                    <div class="media-body">
-                      <span class="name mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td class="budget">
-                  $2500 USD
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i>
-                    <span class="status">pending</span>
-                  </span>
-                </td>
-                <td>
-                  <div class="avatar-group">
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                      <img alt="Image placeholder" src="assets/img/theme/team-1.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Romina Hadid">
-                      <img alt="Image placeholder" src="assets/img/theme/team-2.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Alexander Smith">
-                      <img alt="Image placeholder" src="assets/img/theme/team-3.jpg">
-                    </a>
-                    <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="Jessica Doe">
-                      <img alt="Image placeholder" src="assets/img/theme/team-4.jpg">
-                    </a>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <div class="dropdown">
-                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+              @foreach ($nilais as $nilai)
+                  <tr>
+                    <td class="budget">{{ $counter++ }}</td>
+                    <td class="budget">{{ $nilai->nilai_presentasi }}</td>
+                    <td class="budget">{{ $nilai->nilai_buku_proposal }}</td>
+                    <td class="budget">{{ $nilai->nilai_ide_inovasi_proposal }}</td>
+                    <td class="budget">{{ $nilai->total_nilai }}</td>
+                  </tr>
+              @endforeach
             </tbody>
           </table>
         </div>

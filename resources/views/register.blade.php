@@ -17,32 +17,57 @@
                 @csrf
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
-                    <input class="form-control" placeholder="Nama" type="text" name="nama_mahasiswa">
+                    <input class="form-control @error('nama_mahasiswa') is-invalid @enderror" placeholder="Nama" type="text" name="nama_mahasiswa" value="{{ old('nama_mahasiswa') }}" required>
+                    @error('nama_mahasiswa')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
-                    <input class="form-control" placeholder="Alamat" type="text" name="alamat_mahasiswa">
+                    <input class="form-control @error('alamat_mahasiswa') is-invalid @enderror" placeholder="Alamat" type="text" name="alamat_mahasiswa" value="{{ old('alamat_mahasiswa') }}" required>
+                    @error('alamat_mahasiswa')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
-                    <input class="form-control" placeholder="HP" type="number" name="hp">
+                    <input class="form-control @error('hp') is-invalid @enderror" placeholder="HP" type="number" name="hp" value="{{ old('hp') }}" required>
+                    @error('hp')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
-                    <input class="form-control" placeholder="Email" type="email" name="email">
+                    <input class="form-control @error('email') is-invalid @enderror" placeholder="Email" type="email" name="email" value="{{ old('email') }}" required>
+                    @error('email')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
-                    <input class="form-control" placeholder="Password" type="password" name="password">
+                    <input class="form-control" placeholder="Password" type="password" name="password" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
-                    <input class="form-control" placeholder="Prodi" type="text" name="prodi">
+                    <input class="form-control @error('prodi') is-invalid @enderror" placeholder="Prodi" type="text" name="prodi" value="{{ old('prodi') }}" required>
+                    @error('prodi')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
                   </div>
                 </div>
                 <div class="text-center">

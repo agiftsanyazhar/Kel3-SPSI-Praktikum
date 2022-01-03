@@ -22,11 +22,11 @@ class PAAFactory extends Factory
     public function definition()
     {
         return [
-            'nama_paa'          => 'Zulfa Lutfiah',
+            'nama_paa'          => 'PAA',
             'alamat_paa'        => 'Ds. Pahlawan No. 441, Denpasar 65555, Sulsel',
             'hp'                => '+628'.mt_rand(1111111111,9999999999),
             'email'             => 'paa@gmail.com',
-            'password'          => 'password',
+            'password'          => bcrypt('password'),
         ];
     }
 }

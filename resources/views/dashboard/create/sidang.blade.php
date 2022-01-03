@@ -20,37 +20,32 @@
         <div class="text-center text-muted mb-4">
           {{ $title }}
         </div>
-        <form role="form" action="/create-sidang" method="POST">
+        <form role="form" action="/create-sidang" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" placeholder="Nama" type="text" name="nama_mahasiswa" value="{{ auth()->user()->nama }}" disabled>
-            </div>
+              <label class="form-control-label" for="input-username" hidden>NIM</label>
+              <input class="form-control" placeholder="Nama" type="text" name="nim" value="{{ auth()->user()->Mahasiswa->id }}" hidden>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" placeholder="Email" type="email" name="email" value="{{ auth()->user()->email }}" required>
-            </div>
+              <label class="form-control-label" for="input-username">Dosen Pembimbing</label>
+              <select class="form-control @error('nid') is-invalid @enderror" name="nid" required>
+                <option value="" disabled selected hidden>Dosen Pembimbing</option>
+                @foreach ($dosens as $dosen)
+                  <option value="{{ $dosen->id }}">{{ $dosen->nama_dosen }}</option>
+                @endforeach
+            </select>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" placeholder="Judul TA" type="text" name="hp" required>
-            </div>
+              <label class="form-control-label" for="input-username">Upload Proposal</label>
+              <input class="form-control" type="file" name="proposal" required>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" placeholder="Dosen Pembimbing" type="email" name="email" required>
-            </div>
+              <label class="form-control-label" for="input-username">Upload KHS</label>
+              <input class="form-control" type="file" name="khs" required>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" type="text" name="tgl_lhr" placeholder="Tanggal" onfocus="(this.type='date')" required/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" placeholder="Upload KHS" type="file" id="image" name="image" required>
-            </div>
+              <label class="form-control-label" for="input-username">Upload TOEFL</label>
+              <input class="form-control" type="file" name="toefl" required>
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary mt-4">Daftar Sidang</button>

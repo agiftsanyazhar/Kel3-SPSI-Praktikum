@@ -35,6 +35,7 @@ Route::get('/maps', [MapsController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/nilai-table', [NilaiController::class, 'index']);
 Route::get('/dosen-table', [DosenController::class, 'index']);
+Route::get('/sidang-table', [PendaftaranSidangController::class, 'index']);
 
 //================================================================================
 //=================================== Register ===================================
@@ -56,4 +57,5 @@ Route::get('/form-create-sidang', [PendaftaranSidangController::class, 'create']
 Route::post('/create-sidang', [PendaftaranSidangController::class, 'store']);
 
 //Dosen
-Route::get('/form-create-dosen', [DosenController::class, 'createDaftarDosen']);
+Route::get('/form-create-dosen', [DosenController::class, 'create']);
+Route::post('/create-dosen', [DosenController::class, 'store']);
