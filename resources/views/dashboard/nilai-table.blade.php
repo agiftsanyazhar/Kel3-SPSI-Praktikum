@@ -81,7 +81,7 @@
                     <td class="budget">{{ $nilai->nilai_ide_inovasi_proposal }}</td>
                     <td class="budget">
                       <div class="d-inline">
-                        <a href="{{ url('/nilai-table-penjadwalan-sidang-') }}{{ $nilai->id }}"><button type="submit" class="btn btn-primary">Detail</button></a>
+                        <a href="{{ url('/nilai-table-penjadwalan-sidang-') }}{{ $nilai->id }}"><button type="submit" class="btn btn-primary">Show</button></a>
                         <a href="{{ url('/form-edit-nilai-') }}{{ $nilai->id }}"><button type="submit" class="btn btn-warning">Edit</button></a>
                         <form action="{{ url('/delete-nilai-') }}{{ $nilai->id }}" method="POST">
                           @method('delete')

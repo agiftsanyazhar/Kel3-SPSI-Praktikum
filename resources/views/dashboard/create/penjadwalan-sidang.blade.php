@@ -7,7 +7,8 @@
       <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
         <li class="breadcrumb-item"><a href="dashboard-index"><i class="fas fa-home"></i></a></li>
         <li class="breadcrumb-item"><a href="nilai-table">Nilai</a></li>
-        <li class="breadcrumb-item active">Penjadwalan Sidang</li>
+        <li class="breadcrumb-item"><a href="nilai-table-penjadwalan-sidang-{{ $nilai1->id }}">Penjadwalan Sidang</a></li>
+        <li class="breadcrumb-item active">Tambah Penjadwalan Sidang</li>
       </ol>
     </nav>
   </div>
@@ -19,7 +20,7 @@
     <div class="card border-0 col-lg-6 col-md-8">
       <div class="card-body px-lg-13 py-lg-5">
         <div class="text-center text-muted mb-4">
-          Tambah - {{ $nilai1->id }}
+          Tambah Penjadwalan Sidang - {{ $nilai1->id }}
         </div>
         <form role="form" action="/create-penjadwalan-sidang-{{ $nilai1->id }}" method="POST">
           @csrf

@@ -51,7 +51,7 @@
               @enderror
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-primary mt-4">Tambah Nilai</button>
+            <button type="submit" class="btn btn-primary mt-4">Tambah</button>
           </div>
         </form>
       </div>

@@ -74,9 +74,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/sidang-table">
+              <a class="nav-link" href="/mahasiswa-table">
                 <i class="ni ni-bullet-list-67 text-default"></i>
-                <span class="nav-link-text">Sidang</span>
+                <span class="nav-link-text">Mahasiswa</span>
               </a>
             </li>
             @can('mahasiswa')

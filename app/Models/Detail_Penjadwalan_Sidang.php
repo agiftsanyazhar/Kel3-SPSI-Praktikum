@@ -14,11 +14,11 @@ class Detail_Penjadwalan_Sidang extends Model
 
     public function pendaftaranSidang()
     {
-        return $this->belongsTo(Mahasiswa::class, 'id_daftar_sidang', 'id');
+        return $this->belongsTo(Pendaftaran_Sidang::class, 'id_daftar_sidang', 'id');
     }
 
     public function penjadwalanSidang()
     {
-        return $this->belongsTo(Detail_Penjadwalan_Sidang::class, 'id_sidang', 'id');
+        return $this->belongsTo(Penjadwalan_Sidang::class, 'id_sidang', 'id');
     }
 }

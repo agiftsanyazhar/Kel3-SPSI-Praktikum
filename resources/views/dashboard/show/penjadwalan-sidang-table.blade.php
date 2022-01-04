@@ -7,7 +7,7 @@
       <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
         <li class="breadcrumb-item"><a href="dashboard-index"><i class="fas fa-home"></i></a></li>
         <li class="breadcrumb-item"><a href="nilai-table">Nilai</a></li>
-        <li class="breadcrumb-item active">{{ $nilai->id }}</li>
+        <li class="breadcrumb-item active">Penjadwalan Sidang</li>
       </ol>
     </nav>
   </div>

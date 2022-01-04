@@ -32,7 +32,7 @@ class DosenController extends Controller
     public function create()
     {
         return view('dashboard.create.dosen', [
-            "title" => "Daftar Dosen"
+            "title" => "Tambah Dosen"
         ]);
     }
 

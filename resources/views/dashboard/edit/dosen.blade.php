@@ -19,7 +19,7 @@
     <div class="card border-0 col-lg-6 col-md-8">
       <div class="card-body px-lg-13 py-lg-5">
         <div class="text-center text-muted mb-4">
-          {{ $title }}
+          {{ $title }} - {{ $dosen->nama_dosen }}
         </div>
         <form role="form" action="/update-dosen-{{ $dosen->id }}" method="POST">
           @method('put')

@@ -7,6 +7,7 @@
       <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
         <li class="breadcrumb-item"><a href="dashboard-index"><i class="fas fa-home"></i></a></li>
         <li class="breadcrumb-item"><a href="nilai-table">Nilai</a></li>
+        <li class="breadcrumb-item"><a href="nilai-table-penjadwalan-sidang-{{ $nilais }}">Penjadwalan Sidang</a></li>
         <li class="breadcrumb-item active">Edit Penjadwalan Sidang</li>
       </ol>
     </nav>
@@ -25,10 +26,12 @@
           @method('put')
           @csrf
           <div class="form-group">
-            <label class="form-control-label" for="input-username">Nilai</label>
-              <select class="form-control @error('id_nilai') is-invalid @enderror" name="id_nilai" required>
-                @foreach ($nilais as $nilai)
-                    <option value="{{ $nilai->id }}" selected>{{ $nilai->id }}</option>
+            <label class="form-control-label" for="input-username" hidden>Nilai</label>
+              <select class="form-control @error('id_nilai') is-invalid @enderror" name="id_nilai" hidden required>
+                @foreach ($nilai as $row)
+                  @if (old('id_nilai', $jadwal_sidang->id_nilai) == $row->id)
+                      <option value={{  $row->id }} selected>{{ $row->id }}</option>
+                  @endif  
                 @endforeach
             </select>
           </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Detail_Penjadwalan_Sidang;
+use App\Models\Mahasiswa;
+use App\Models\Pendaftaran_Sidang;
 use Illuminate\Http\Request;
 
 class DetailPenjadwalanSidangController extends Controller
@@ -12,9 +14,15 @@ class DetailPenjadwalanSidangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        return view('dashboard.show.detail-penjadwalan-sidang', [
+            'detail'            => Detail_Penjadwalan_Sidang::where('id_daftar_sidang', $id)->with('pendaftaransidang')->get(),
+            'mahasiswa'         => Pendaftaran_Sidang::find($id)->mahasiswa->nama_mahasiswa,
+            // 'nim'               => Pendaftaran_Sidang::find($id)->mahasiswa->nim,
+            'id'                => Pendaftaran_Sidang::find($id)->id,
+            'counter'           => 1
+        ]);
     }
 
     /**

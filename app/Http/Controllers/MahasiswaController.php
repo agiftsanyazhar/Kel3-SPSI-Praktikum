@@ -14,7 +14,11 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.mahasiswa-table', [
+            'mahasiswa' => Mahasiswa::all(),
+            "title"     => "Mahasiswa",
+            'counter'   => 1,
+        ]);
     }
 
     /**

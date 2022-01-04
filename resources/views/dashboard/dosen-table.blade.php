@@ -46,6 +46,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="name">No.</th>
+                <th scope="col" class="sort" data-sort="name">NID</th>
                 <th scope="col" class="sort" data-sort="name">Nama</th>
                 <th scope="col" class="sort" data-sort="budget">Alamat</th>
                 <th scope="col" class="sort" data-sort="status">HP</th>
@@ -58,6 +59,7 @@
               @foreach ($dosens as $dosen)
                   <tr>
                     <td class="budget">{{ $counter++ }}</td>
+                    <td class="budget">{{ $dosen->id }}</td>
                     <td class="budget">{{ $dosen->nama_dosen }}</td>
                     <td class="budget">{{ $dosen->alamat_dosen }}</td>
                     <td class="budget">{{ $dosen->hp }}</td>

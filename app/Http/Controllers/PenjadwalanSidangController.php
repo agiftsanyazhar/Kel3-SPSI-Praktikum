@@ -83,7 +83,8 @@ class PenjadwalanSidangController extends Controller
     {
         return view('dashboard.edit.penjadwalan-sidang', [
             'jadwal_sidang'      => Penjadwalan_Sidang::find($id),
-            'nilais'             => Nilai::all(),
+            'nilais'             => Penjadwalan_Sidang::find($id)->id_nilai,
+            'nilai'              => Nilai::all(),
             'dosens'             => Dosen::all(),
             'title'              => Penjadwalan_Sidang::find($id)->id,
         ]);

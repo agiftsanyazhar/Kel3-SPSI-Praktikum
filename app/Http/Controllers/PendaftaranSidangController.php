@@ -15,12 +15,14 @@ class PendaftaranSidangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('dashboard.sidang-table', [
-            'sidangs'   => Pendaftaran_Sidang::all(),
-            "title"     => "Sidang",
-            'counter'   => 1,
+        $mahasiswa  = Mahasiswa::find($id);
+        return view('dashboard.show.sidang-table', [
+            'jadwal_sidang'     => Pendaftaran_Sidang::where('nim', $id)->orderby('tgl_daftar_sidang', 'desc')->with('dosen')->get(),
+            "title"             => $mahasiswa->nama_mahasiswa,
+            "nim"               => $id,
+            'counter'           => 1,
         ]);
     }
 
@@ -85,9 +87,9 @@ class PendaftaranSidangController extends Controller
 
         Pendaftaran_Sidang::create($validatedData);
 
-        $request->session()->flash('success','Registrasi Berhasil! Semoga Sukses');
+        $request->session()->flash('successSidang','Registrasi Berhasil! Semoga Sukses');
 
-        return redirect('/sidang-table');
+        return redirect('/mahasiswa-table');
     }
 
     /**
@@ -152,7 +154,7 @@ class PendaftaranSidangController extends Controller
             'toefl'         => basename($_FILES['toefl']['name']),
         ]);
 
-        return redirect('/sidang-table')->with('update','Data Sidang Berhasil Di-Update!');
+        return redirect('/mahasiswa-table')->with('updateSidang','Data Sidang Berhasil Di-Update!');
     }
 
     /**
@@ -165,6 +167,6 @@ class PendaftaranSidangController extends Controller
     {
         Pendaftaran_Sidang::find($id)->delete();
 
-        return redirect('/sidang-table')->with('delete','Sidang Berhasil Dihapus!');
+        return redirect('/mahasiswa-table')->with('deleteSidang','Sidang Berhasil Dihapus!');
     }
 }
