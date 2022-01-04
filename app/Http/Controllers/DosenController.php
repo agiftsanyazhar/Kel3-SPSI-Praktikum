@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DosenController extends Controller
 {
@@ -64,7 +66,7 @@ class DosenController extends Controller
             'role'          => 'Dosen',
         ]);
 
-        $request->session()->flash('success','Dosen Berhasil Ditambahkan!');
+        $request->session()->flash('success','Dosen Berhasil Ditambah!');
 
         return redirect('/dosen-table');
     }
@@ -86,9 +88,12 @@ class DosenController extends Controller
      * @param  \App\Models\Dosen  $dosen
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dosen $dosen)
+    public function edit(Dosen $dosen, $id)
     {
-        //
+        return view('dashboard.edit.dosen', [
+            'dosen' => Dosen::find($id),
+            "title" => "Edit Dosen"
+        ]);
     }
 
     /**
@@ -100,7 +105,14 @@ class DosenController extends Controller
      */
     public function update(Request $request, Dosen $dosen)
     {
-        //
+        DB::table('dosens')->where('id',$request['id'])->update([
+            'alamat_dosen'  => $request['alamat_dosen'],
+            'hp'            => $request['hp'],
+            'email'         => $request['email'],
+            'password'      => Hash::make($request->newPassword)
+        ]);
+
+        return redirect('/dosen-table')->with('update','Data Dosen Berhasil Di-Update!');
     }
 
     /**
@@ -109,8 +121,11 @@ class DosenController extends Controller
      * @param  \App\Models\Dosen  $dosen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dosen $dosen)
+    public function destroy(Dosen $dosen, $id)
     {
-        //
+        Dosen::find($id)->delete();
+        User::where('nid',$id)->delete();
+
+        return redirect('/dosen-table')->with('delete','Dosen Berhasil Dihapus!');
     }
 }

@@ -24,49 +24,44 @@
         <form role="form" action="/create-dosen" method="POST">
           @csrf
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control @error('nama_dosen') is-invalid @enderror" placeholder="Nama" type="text" name="nama_dosen" value="{{ old('nama_dosen') }}" required>
+              <label class="form-control-label" for="input-username">Nama</label>
+              <input class="form-control @error('nama_dosen') is-invalid @enderror" type="text" name="nama_dosen" value="{{ old('nama_dosen') }}" required>
               @error('nama_dosen')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
               @enderror
-            </div>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control @error('alamat_dosen') is-invalid @enderror" placeholder="Alamat" type="text" name="alamat_dosen" value="{{ old('alamat_dosen') }}" required>
+              <label class="form-control-label" for="input-username">Alamat</label>
+              <input class="form-control @error('alamat_dosen') is-invalid @enderror" type="text" name="alamat_dosen" value="{{ old('alamat_dosen') }}" required>
               @error('alamat_dosen')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
               @enderror
-            </div>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control @error('hp') is-invalid @enderror" placeholder="HP" type="number" name="hp" value="{{ old('hp') }}" required>
+              <label class="form-control-label" for="input-username">HP</label>
+              <input class="form-control @error('hp') is-invalid @enderror" type="number" name="hp" value="{{ old('hp') }}" required>
               @error('hp')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
               @enderror
-            </div>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control @error('email') is-invalid @enderror" placeholder="Email" type="email" name="email" value="{{ old('email') }}" required>
+              <label class="form-control-label" for="input-username">Email</label>
+              <input class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" required>
               @error('email')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>
               @enderror
-            </div>
           </div>
           <div class="form-group">
-            <div class="input-group input-group-merge input-group-alternative">
-              <input class="form-control" placeholder="Password" type="password" name="password" required>
-            </div>
+              <label class="form-control-label" for="input-username">Password</label>
+              <input class="form-control" type="password" name="password" required>
           </div>
           <div class="text-center">
             <button type="submit" class="btn btn-primary mt-4">Register</button>

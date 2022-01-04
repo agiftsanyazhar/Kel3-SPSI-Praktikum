@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NilaiController extends Controller
 {
@@ -28,7 +29,9 @@ class NilaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.create.nilai', [
+            "title" => "Tambah Nilai"
+        ]);
     }
 
     /**
@@ -39,7 +42,17 @@ class NilaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nilai_presentasi'              => 'required',
+            'nilai_buku_proposal'           => 'required',
+            'nilai_ide_inovasi_proposal'    => 'required',
+        ]);
+        
+        Nilai::create($validatedData);
+
+        $request->session()->flash('success','Nilai Berhasil Ditambah!');
+
+        return redirect('/nilai-table');
     }
 
     /**
@@ -59,9 +72,13 @@ class NilaiController extends Controller
      * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nilai $nilai)
+    public function edit(Nilai $nilai, $id)
     {
-        //
+        return view('dashboard.edit.nilai', [
+            'nilais'    => Nilai::find($id),
+            "title"     => "Edit Nilai",
+            'counter'   => 1,
+        ]);
     }
 
     /**
@@ -73,7 +90,13 @@ class NilaiController extends Controller
      */
     public function update(Request $request, Nilai $nilai)
     {
-        //
+        DB::table('nilais')->where('id',$request['id'])->update([
+            'nilai_presentasi'              => $request['nilai_presentasi'],
+            'nilai_buku_proposal'           => $request['nilai_buku_proposal'],
+            'nilai_ide_inovasi_proposal'    => $request['nilai_ide_inovasi_proposal'],
+        ]);
+
+        return redirect('/nilai-table')->with('update','Data Nilai Berhasil Di-Update!');
     }
 
     /**
@@ -82,8 +105,10 @@ class NilaiController extends Controller
      * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nilai $nilai)
+    public function destroy(Nilai $nilai,$id)
     {
-        //
+        Nilai::find($id)->delete();
+
+        return redirect('/nilai-table')->with('delete','Nilai Berhasil Dihapus!');
     }
 }

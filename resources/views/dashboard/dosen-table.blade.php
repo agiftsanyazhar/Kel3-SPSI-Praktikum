@@ -15,12 +15,24 @@
 @section('container2')
   <div class="row">
     <div class="col">
-      <div class="mb-3">
-        <a href="form-create-dosen" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
-      </div>
+      {{-- @can('paa') --}}
+        <div class="mb-3">
+          <a href="form-create-dosen" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
+        </div>
+      {{-- @endcan --}}
       @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
+        </div>
+      @endif
+      @if (session()->has('update'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('update') }}
+        </div>
+      @endif
+      @if (session()->has('delete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('delete') }}
         </div>
       @endif
       <div class="card">
@@ -38,6 +50,7 @@
                 <th scope="col" class="sort" data-sort="budget">Alamat</th>
                 <th scope="col" class="sort" data-sort="status">HP</th>
                 <th scope="col" class="sort" data-sort="status">Email</th>
+                <th scope="col" class="sort" data-sort="status">Aksi</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -49,36 +62,20 @@
                     <td class="budget">{{ $dosen->alamat_dosen }}</td>
                     <td class="budget">{{ $dosen->hp }}</td>
                     <td class="budget">{{ $dosen->email }}</td>
+                    <td class="budget">
+                      <div class="d-inline">
+                        <a href="{{ url('/form-edit-dosen-') }}{{ $dosen->id }}"><button type="submit" class="btn btn-warning">Edit</button></a>
+                        <form action="{{ url('/delete-dosen-') }}{{ $dosen->id }}" method="POST">
+                          @method('delete')
+                          @csrf
+                          <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        </form>
+                      </div>
+                    </td>
                   </tr>
               @endforeach
             </tbody>
           </table>
-        </div>
-        <!-- Card footer -->
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>

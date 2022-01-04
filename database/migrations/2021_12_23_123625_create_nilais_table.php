@@ -15,10 +15,9 @@ class CreateNilaisTable extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->decimal('nilai_presentasi', 4, 2);
-            $table->decimal('nilai_buku_proposal', 4, 2);
-            $table->decimal('nilai_ide_inovasi_proposal', 4, 2);
-            $table->decimal('total_nilai', 4, 2);
+            $table->decimal('nilai_presentasi',4,2);
+            $table->decimal('nilai_buku_proposal',4,2);
+            $table->decimal('nilai_ide_inovasi_proposal',4,2);
             $table->timestamps();
         });
     }

@@ -102,9 +102,6 @@
               <div class="col-8">
                 <h3 class="mb-0">Edit profile </h3>
               </div>
-              <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-primary">Save</a>
-              </div>
             </div>
           </div>
           <div class="card-body">
@@ -122,7 +119,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email</label>
-                        <input type="email" id="input-email" class="form-control" value="{{ auth()->user()->email }}">
+                        <input type="email" id="input-email" class="form-control" value="{{ auth()->user()->email }}" disabled>
                       </div>
                     </div>
                   </div>
@@ -130,13 +127,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Phone</label>
-                        <input type="text" id="input-username" class="form-control" value="{{ auth()->user()->PAA->hp }}">
+                        <input type="text" id="input-username" class="form-control" value="{{ auth()->user()->PAA->hp }}" disabled>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Address</label>
-                        <input id="input-address" class="form-control" value="{{ auth()->user()->PAA->alamat_paa }}" type="text">
+                        <input id="input-address" class="form-control" value="{{ auth()->user()->PAA->alamat_paa }}" type="text" disabled>
                       </div>
                     </div>
                   </div>
@@ -155,7 +152,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email</label>
-                        <input type="email" id="input-email" class="form-control" value="{{ auth()->user()->email }}">
+                        <input type="email" id="input-email" class="form-control" value="{{ auth()->user()->email }}" disabled>
                       </div>
                     </div>
                   </div>
@@ -163,13 +160,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Phone</label>
-                        <input type="text" id="input-username" class="form-control" value="{{ auth()->user()->Dosen->hp }}">
+                        <input type="text" id="input-username" class="form-control" value="{{ auth()->user()->Dosen->hp }}" disabled>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Address</label>
-                        <input id="input-address" class="form-control" value="{{ auth()->user()->Dosen->alamat_dosen }}" type="text">
+                        <input id="input-address" class="form-control" value="{{ auth()->user()->Dosen->alamat_dosen }}" type="text" disabled>
                       </div>
                     </div>
                   </div>
@@ -188,7 +185,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email</label>
-                        <input type="email" id="input-email" class="form-control" value="{{ auth()->user()->email }}">
+                        <input type="email" id="input-email" class="form-control" value="{{ auth()->user()->email }}" disabled>
                       </div>
                     </div>
                   </div>
@@ -196,7 +193,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Phone</label>
-                        <input type="text" id="input-username" class="form-control" value="{{ auth()->user()->Mahasiswa->hp }}">
+                        <input type="text" id="input-username" class="form-control" value="{{ auth()->user()->Mahasiswa->hp }}" disabled>
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -215,7 +212,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="form-control-label" for="input-address">Address</label>
-                        <input id="input-address" class="form-control" value="{{ auth()->user()->Mahasiswa->alamat_mahasiswa }}" type="text">
+                        <input id="input-address" class="form-control" value="{{ auth()->user()->Mahasiswa->alamat_mahasiswa }}" type="text" disabled>
                       </div>
                     </div>
                   </div>

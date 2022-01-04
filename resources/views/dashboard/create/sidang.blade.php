@@ -29,7 +29,6 @@
           <div class="form-group">
               <label class="form-control-label" for="input-username">Dosen Pembimbing</label>
               <select class="form-control @error('nid') is-invalid @enderror" name="nid" required>
-                <option value="" disabled selected hidden>Dosen Pembimbing</option>
                 @foreach ($dosens as $dosen)
                   <option value="{{ $dosen->id }}">{{ $dosen->nama_dosen }}</option>
                 @endforeach

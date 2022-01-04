@@ -17,11 +17,6 @@
     <div class="col-xl-8">
       <div class="card bg-default">
         <div class="card-header bg-transparent">
-          @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{ session('success') }}
-          </div>
-          @endif
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>

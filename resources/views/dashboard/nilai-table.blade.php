@@ -17,12 +17,41 @@
     <div class="col">
       {{-- @can('dosen') --}}
         <div class="mb-3">
-          <a href="#!" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
+          <a href="/form-create-nilai" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
         </div>
       {{-- @endcan --}}
+
+      {{-- Nilai --}}
       @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
+        </div>
+      @endif
+      @if (session()->has('update'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('update') }}
+        </div>
+      @endif
+      @if (session()->has('delete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('delete') }}
+        </div>
+      @endif
+
+      {{-- Jadwal --}}
+      @if (session()->has('successJadwal'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('successJadwal') }}
+        </div>
+      @endif
+      @if (session()->has('updateJadwal'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('updateJadwal') }}
+        </div>
+      @endif
+      @if (session()->has('deleteJadwal'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('deleteJadwal') }}
         </div>
       @endif
       <div class="card">
@@ -39,7 +68,7 @@
                 <th scope="col" class="sort" data-sort="budget">Nilai Prsentasi</th>
                 <th scope="col" class="sort" data-sort="status">Nilai Buku Proposal</th>
                 <th scope="col" class="sort" data-sort="completion">Nilai Ide Inovasi Proposal</th>
-                <th scope="col" class="sort" data-sort="completion">Total</th>
+                <th scope="col" class="sort" data-sort="completion">Aksi</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -50,37 +79,21 @@
                     <td class="budget">{{ $nilai->nilai_presentasi }}</td>
                     <td class="budget">{{ $nilai->nilai_buku_proposal }}</td>
                     <td class="budget">{{ $nilai->nilai_ide_inovasi_proposal }}</td>
-                    <td class="budget">{{ $nilai->total_nilai }}</td>
+                    <td class="budget">
+                      <div class="d-inline">
+                        <a href="{{ url('/nilai-table-penjadwalan-sidang-') }}{{ $nilai->id }}"><button type="submit" class="btn btn-primary">Detail</button></a>
+                        <a href="{{ url('/form-edit-nilai-') }}{{ $nilai->id }}"><button type="submit" class="btn btn-warning">Edit</button></a>
+                        <form action="{{ url('/delete-nilai-') }}{{ $nilai->id }}" method="POST">
+                          @method('delete')
+                          @csrf
+                          <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        </form>
+                      </div>
+                    </td>
                   </tr>
               @endforeach
             </tbody>
           </table>
-        </div>
-        <!-- Card footer -->
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>

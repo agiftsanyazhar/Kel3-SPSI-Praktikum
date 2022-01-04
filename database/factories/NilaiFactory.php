@@ -25,7 +25,6 @@ class NilaiFactory extends Factory
             'nilai_presentasi'              => mt_rand(1,100)/10,
             'nilai_buku_proposal'           => mt_rand(1,100)/10,
             'nilai_ide_inovasi_proposal'    => mt_rand(1,100)/10,
-            'total_nilai'                   => mt_rand(1,100)/10,
             'created_at'                    => $this->faker->date(now()),
             'updated_at'                    => $this->faker->date(now()),
         ];

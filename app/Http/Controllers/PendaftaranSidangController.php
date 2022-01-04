@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\Pendaftaran_Sidang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PendaftaranSidangController extends Controller
 {
@@ -86,7 +87,7 @@ class PendaftaranSidangController extends Controller
 
         $request->session()->flash('success','Registrasi Berhasil! Semoga Sukses');
 
-        return redirect('/dashboard-index');
+        return redirect('/sidang-table');
     }
 
     /**
@@ -106,9 +107,13 @@ class PendaftaranSidangController extends Controller
      * @param  \App\Models\Pendaftaran_Sidang  $pendaftaran_Sidang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pendaftaran_Sidang $pendaftaran_Sidang)
+    public function edit(Pendaftaran_Sidang $pendaftaran_Sidang, $id)
     {
-        //
+        return view('dashboard.edit.sidang', [
+            'daftar_sidang'     => Pendaftaran_Sidang::find($id),
+            'dosens'            => Dosen::all(),
+            "title"             => 'Edit Sidang'
+        ]);
     }
 
     /**
@@ -120,7 +125,34 @@ class PendaftaranSidangController extends Controller
      */
     public function update(Request $request, Pendaftaran_Sidang $pendaftaran_Sidang)
     {
-        //
+        //Proposal
+        $proposal           = $request->file('proposal');
+        $target_dirprop     = "upload-proposal";
+        $target_fileprop    = $target_dirprop . basename($_FILES['proposal']['name']);
+        $propFileType       = strtolower(pathinfo($target_fileprop,PATHINFO_EXTENSION));
+        $proposal->move($target_dirprop,$proposal->getClientOriginalName());
+        
+        //KHS
+        $khs               = $request->file('khs');
+        $target_dirkhs     = "upload-khs";
+        $target_filekhs    = $target_dirkhs . basename($_FILES['khs']['name']);
+        $khsFileType       = strtolower(pathinfo($target_filekhs,PATHINFO_EXTENSION));
+        $khs->move($target_dirkhs,$khs->getClientOriginalName());
+        
+        //TOEFL
+        $toefl              = $request->file('toefl');
+        $target_dirtoefl    = "upload-toefl";
+        $target_filetoefl   = $target_dirtoefl . basename($_FILES['toefl']['name']);
+        $toeflFileType      = strtolower(pathinfo($target_filetoefl,PATHINFO_EXTENSION));
+        $toefl->move($target_dirtoefl,$toefl->getClientOriginalName());
+
+        DB::table('pendaftaran__sidangs')->where('id',$request['id'])->update([
+            'proposal'      => basename($_FILES['proposal']['name']),
+            'khs'           => basename($_FILES['khs']['name']),
+            'toefl'         => basename($_FILES['toefl']['name']),
+        ]);
+
+        return redirect('/sidang-table')->with('update','Data Sidang Berhasil Di-Update!');
     }
 
     /**
@@ -129,8 +161,10 @@ class PendaftaranSidangController extends Controller
      * @param  \App\Models\Pendaftaran_Sidang  $pendaftaran_Sidang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pendaftaran_Sidang $pendaftaran_Sidang)
+    public function destroy(Pendaftaran_Sidang $pendaftaran_Sidang, $id)
     {
-        //
+        Pendaftaran_Sidang::find($id)->delete();
+
+        return redirect('/sidang-table')->with('delete','Sidang Berhasil Dihapus!');
     }
 }

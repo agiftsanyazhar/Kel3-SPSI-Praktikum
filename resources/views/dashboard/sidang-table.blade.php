@@ -20,6 +20,16 @@
             {{ session('success') }}
         </div>
       @endif
+      @if (session()->has('update'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('update') }}
+        </div>
+      @endif
+      @if (session()->has('delete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('delete') }}
+        </div>
+      @endif
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
@@ -38,6 +48,7 @@
                 <th scope="col" class="sort" data-sort="status">KHS</th>
                 <th scope="col" class="sort" data-sort="status">TOEFL</th>
                 <th scope="col" class="sort" data-sort="status">Status</th>
+                <th scope="col" class="sort" data-sort="status">Aksi</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -48,9 +59,15 @@
                     <td class="budget">{{ $sidang->nim }}</td>
                     <td class="budget">{{ $sidang->nid }}</td>
                     <td class="budget">{{ $sidang->tgl_daftar_sidang }}</td>
-                    <td class="budget">{{ $sidang->proposal }}</td>
-                    <td class="budget">{{ $sidang->khs }}</td>
-                    <td class="budget">{{ $sidang->toefl }}</td>
+                    <td class="budget">
+                      <a href="{{ asset('upload-proposal/'.$sidang->proposal) }}" target="_blank">{{ $sidang->proposal }}</a>
+                    </td>
+                    <td class="budget">
+                      <a href="{{ asset('upload-khs/'.$sidang->khs) }}" target="_blank">{{ $sidang->khs }}</a>
+                    </td>
+                    <td class="budget">
+                      <a href="{{ asset('upload-toefl/'.$sidang->toefl) }}" target="_blank">{{ $sidang->toefl }}</a>
+                    </td>
                     <td class="budget">
                       @if ($sidang->aktif === 1)
                           Aktif
@@ -58,36 +75,21 @@
                           Tidak Aktif
                       @endif
                     </td>
+                    <td class="budget">
+                      <div class="d-inline">
+                        <a href=""><button type="submit" class="btn btn-primary">Detail</button></a>
+                        <a href="{{ url('/form-edit-sidang-') }}{{ $sidang->id }}"><button type="submit" class="btn btn-warning">Edit</button></a>
+                        <form action="{{ url('/delete-sidang-') }}{{ $sidang->id }}" method="POST">
+                          @method('delete')
+                          @csrf
+                          <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        </form>
+                      </div>
+                    </td>
                   </tr>
               @endforeach
             </tbody>
           </table>
-        </div>
-        <!-- Card footer -->
-        <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>

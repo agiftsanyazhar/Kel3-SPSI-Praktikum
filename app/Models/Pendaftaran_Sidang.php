@@ -24,7 +24,7 @@ class Pendaftaran_Sidang extends Model
     
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'nim', 'id');
+        return $this->belongsTo(Mahasiswa::class, 'id', 'nim');
     }
 
     public function detailPenjadwalanSidang()
