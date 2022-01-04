@@ -17,11 +17,11 @@
 @section('container2')
   <div class="row">
     <div class="col">
-      {{-- @can('paa') --}}
+      @can('paa')
       <div class="mb-3">
         <a href="{{ url('/form-create-detail-penjadwalan-sidang-') }}{{ $detail }}" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
       </div>
-    {{-- @endcan --}}
+    @endcan
       @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
