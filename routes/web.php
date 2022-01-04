@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\Dashboard_IndexController;
 use App\Http\Controllers\DetailPenjadwalanSidangController;
 use App\Http\Controllers\DosenController;
@@ -39,6 +40,7 @@ Route::get('/maps', [MapsController::class, 'index'])->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::get('/nilai-table', [NilaiController::class, 'index'])->middleware('auth');
 Route::get('/dosen-table', [DosenController::class, 'index'])->middleware('auth');
+Route::get('/bimbingan-table', [BimbinganController::class, 'index'])->middleware('auth');
 Route::get('/mahasiswa-table', [MahasiswaController::class, 'index'])->middleware('auth');
 Route::get('/sidang-table', [PendaftaranSidangController::class, 'index'])->middleware('auth');
 Route::get('/penjadwalan-sidang-table', [PenjadwalanSidangController::class, 'index'])->middleware('auth');

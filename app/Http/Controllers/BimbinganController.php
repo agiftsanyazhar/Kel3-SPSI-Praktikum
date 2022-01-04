@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bimbingan;
+use App\Models\Dosen;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class BimbinganController extends Controller
@@ -12,9 +14,18 @@ class BimbinganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Dosen $iddosen, Mahasiswa $idmahasiswa)
     {
-        //
+        return view('dashboard.bimbingan-table', [
+            'jadwal_sidang'     => Penjadwalan_Sidang::where('id_nilai', $id->id)->get(),
+            'nilai'             => $id,
+            "title"             => "Penjadwalan Sidang",
+            'counter'           => 1,
+
+            'bimbingan' => Bimbingan::all(),
+            "title"     => "Bimbingan",
+            'counter'   => 1,
+        ]);
     }
 
     /**
