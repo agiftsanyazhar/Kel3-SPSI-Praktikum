@@ -76,7 +76,7 @@
                     </td>
                     <td class="budget">
                       <div class="d-inline">
-                        <a href="detail-penjadwalan-sidang-{{ $sidang->id }}"><button type="submit" class="btn btn-primary">Detail</button></a>
+                        {{-- <a href="detail-penjadwalan-sidang-{{ $sidang->id }}"><button type="submit" class="btn btn-primary">Detail</button></a> --}}
                         <a href="{{ url('/form-edit-sidang-') }}{{ $sidang->id }}"><button type="submit" class="btn btn-warning">Edit</button></a>
                         <form action="{{ url('/delete-sidang-') }}{{ $sidang->id }}" method="POST">
                           @method('delete')

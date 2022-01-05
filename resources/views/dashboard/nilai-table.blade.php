@@ -15,11 +15,11 @@
 @section('container2')
   <div class="row">
     <div class="col">
-      @can('dosen')
+      {{-- @can('dosen') --}}
         <div class="mb-3">
           <a href="/form-create-nilai" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
         </div>
-      @endcan
+      {{-- @endcan --}}
 
       {{-- Nilai --}}
       @if (session()->has('success'))

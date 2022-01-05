@@ -16,11 +16,11 @@
 @section('container2')
   <div class="row">
     <div class="col">
-      @can('paa')
+      {{-- @can('paa') --}}
         <div class="mb-3">
           <a href="{{ url('/form-create-penjadwalan-sidang-') }}{{ $nilai->id }}" class="btn btn-sm btn-success py-2 px-3">Tambah</a>
         </div>
-      @endcan
+      {{-- @endcan --}}
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
